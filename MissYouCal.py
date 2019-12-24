@@ -1,25 +1,27 @@
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow
+from PySide2.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget, QLabel, QGridLayout, QPushButton, \
+    QLineEdit
 from PySide2.QtCore import QFile
-from ui_mainwindow import Ui_MainWindow
 from PySide2.QtUiTools import QUiLoader
 
+app = QApplication(sys.argv)
+window = QWidget()
+window.setWindowTitle('IMISSYOU')
+layout = QGridLayout()
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super(MainWindow, self).__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+layout.addWidget(QPushButton('1'), 0, 0)
+layout.addWidget(QPushButton('2'), 0, 1)
+layout.addWidget(QPushButton('3'), 0, 2)
+layout.addWidget(QPushButton('4'), 1, 0)
+layout.addWidget(QPushButton('5'), 1, 1)
+layout.addWidget(QPushButton('6'), 1, 2)
+layout.addWidget(QPushButton('7'), 2, 0)
+layout.addWidget(QPushButton('8'), 2, 1)
+layout.addWidget(QPushButton('9'), 2, 2)
+layout.addWidget(QPushButton('del'), 3, 0)
+layout.addWidget(QPushButton('0'), 3, 1)
+layout.addWidget(QPushButton('.'), 3, 2)
+window.setLayout(layout)
+window.show()
 
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    ui_file = QFile("mainwindow.ui")
-    ui_file.open(QFile.ReadOnly)
-
-    loader = QUiLoader()
-    window = loader.load(ui_file)
-    ui_file.close()
-    window.show()
-
-    sys.exit(app.exec_())
+sys.exit(app.exec_())
